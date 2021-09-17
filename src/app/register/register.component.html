@@ -1,0 +1,32 @@
+
+<div class="container mt-4">
+    <div class="container">
+      <form class="form-group d-flex flex-column justify-content-center" [formGroup]="regForm"  >
+        <h3 class="align-center align-self-center" >Registration Form</h3>
+        <label for="name">Name</label>
+        <input formControlName="name" type="text" class="mb-2 form-control" id="name">
+        <small class="alert-danger alert" *ngIf="name && name.invalid && (name.dirty || name.touched)" >*Name field is required</small>
+  
+        <label for="email">Email</label>
+        <input formControlName="email" type="email" class="mb-2 form-control" id="email">
+        <small class="alert-danger alert" *ngIf="email && email.invalid && (email.dirty || email.touched)" >*Email is invalid</small>
+        <small class="alert-danger alert" *ngIf="email && response==='Already Registered' && (email.dirty || email.touched)" >*Email Already Taken</small>
+        
+        <label for="password">Password</label>
+        <input formControlName="password" type="password" class="mb-2 form-control" id="password">
+        <small class="alert-danger alert" *ngIf="password && password.invalid && (password.dirty || password.touched)" >*Password must be atleast 8 character</small>
+    
+        <label for="confirm-password">Confirm Password</label>
+        <input formControlName="confirmPassword" type="password" class="mb-2 form-control" id="confirm-password">
+        <small class="alert-danger alert" *ngIf="confirmPassword && confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)" >*Confirm Password cannot be empty</small>
+        <small class="alert-danger alert" *ngIf="confirmPassword && passwordError===true && (confirmPassword.dirty || confirmPassword.touched)" >*Password did not match</small>
+        
+        <button [disabled]="regForm.invalid" class="btn btn-primary" (click)='register($event, regForm.value)' >Submit</button>
+        <div class="mt-2" *ngIf="response && response==='Created'">
+            <h3 class="alert alert-success">User Registred Successfully</h3>
+            <a routerLink="/login" class="btn btn-primary mt-4">Login</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  

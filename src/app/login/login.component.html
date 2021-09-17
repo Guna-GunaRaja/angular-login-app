@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="container mt-4 d-flex flex-column justify-content-center">
+        <form class="form-group d-flex flex-column justify-content-center" [formGroup]="loginForm"> 
+            <h3 class="text-primary">Login</h3>
+            <label class="mt-2" for="email">Email</label>
+            <input type="text" id="email" formControlName="email" class="form-control">
+            <small class="mt-2 alert-danger alert" *ngIf="email && email.invalid && (email.dirty || email.touched)" >*Enter Valid Email</small>
+            <small class="mt-2 alert-danger alert" *ngIf="response && response==='User Not Found' " >*User not found</small>
+
+            <label class="mt-2" for="password">Password</label>
+            <input type="password" id="password" formControlName="password"  class="form-control">
+            <small class="mt-2 alert-danger alert" *ngIf="password && password.invalid && (password.dirty || password.touched)" >*Enter Valid Email</small>
+            <small class="mt-2 alert-danger alert" *ngIf="response && response==='Wrong Password' " >*Wrong password</small>
+
+            <button [disabled]="loginForm.invalid" class="btn btn-primary mt-4" (click)="login($event, loginForm.value)">Login</button>
+            <small class="mt-2 alert-success alert" *ngIf="response && response==='OK' " >Login Successful</small>
+        </form>
+    </div>
+</div>
